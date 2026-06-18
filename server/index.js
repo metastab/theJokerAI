@@ -3,7 +3,7 @@ import cors from "cors"
 import { HfInference } from "@huggingface/inference"
 
 const app = express()
-const PORT = 3012
+// const PORT = 3012
 
 const SYSTEM_PROMPT = `
 You are an assistant that receives a list of keywords that a user has and make a joke with all of those keywords. The joke can include additional keywords they didn't mention. Format your response in markdown to make it easier to render to a web page. Provide only the markdown format of the joke and nothing else. 
@@ -12,7 +12,15 @@ You are an assistant that receives a list of keywords that a user has and make a
 // Load API key from environment — never hard-code it here!
 const hf = new HfInference(process.env.HF_ACCESS_TOKEN)
 
-app.use(cors({ origin: "http://localhost:5173" }))
+app.use(
+    cors({
+        origin: [
+            "http://localhost:5173",
+            "https://the-joker-ai.vercel.app"
+        ],
+    })
+)
+
 app.use(express.json())
 
 app.post("/api/joke", async (req, res) => {
@@ -42,11 +50,13 @@ app.post("/api/joke", async (req, res) => {
     }
 })
 
-const server = app.listen(PORT, () => {
-    console.log(`✅  Joke backend running at http://localhost:${PORT}`)
-})
+// const server = app.listen(PORT, () => {
+//     console.log(`✅  Joke backend running at http://localhost:${PORT}`)
+// })
 
-// Gracefully close the server when node --watch restarts (SIGTERM)
-process.on('SIGTERM', () => {
-    server.close(() => process.exit(0))
-})
+// // Gracefully close the server when node --watch restarts (SIGTERM)
+// process.on('SIGTERM', () => {
+//     server.close(() => process.exit(0))
+// })
+
+export default app
