@@ -1,7 +1,7 @@
 // API calls are now proxied through the Express backend (server/)
 // so the HuggingFace API key never reaches the browser.
 
-const API_URL = "http://localhost:3001/api/joke"
+const API_URL = "https://the-joker-ai-backend.vercel.app"
 
 export async function getJokeFromMistral(ingredientsArr) {
     try {
