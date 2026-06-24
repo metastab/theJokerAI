@@ -33,11 +33,15 @@ export default function Body() {
     }
 
     const [joke, setJoke] = React.useState("")
+    const [isLoading, setIsLoading] = React.useState(false)
 
     async function getJoke() {
-        const jokeMarkdown = await getJokeFromMistral(keywords)
-        setJoke(jokeMarkdown)
-    }
+    setJoke("")
+    setIsLoading(true)   
+    const jokeMarkdown = await getJokeFromMistral(keywords)
+    setJoke(jokeMarkdown)
+    setIsLoading(false)  
+}
 
     return (
         <main>
@@ -76,7 +80,7 @@ export default function Body() {
 
             </section>
 
-            {joke && <JokeSection joke={joke} />}
+            {(isLoading || joke) && <JokeSection joke={joke} isLoading={isLoading} />}
 
         </main>
     )
