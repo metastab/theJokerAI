@@ -36,11 +36,11 @@ export default function Body() {
     const [isLoading, setIsLoading] = React.useState(false)
 
     async function getJoke() {
-    setJoke("")
-    setIsLoading(true)   
-    const jokeMarkdown = await getJokeFromMistral(keywords)
-    setJoke(jokeMarkdown)
-    setIsLoading(false)  
+        setJoke("")
+        setIsLoading(true)   
+        const jokeMarkdown = await getJokeFromMistral(keywords)
+        setJoke(jokeMarkdown)
+        setIsLoading(false)  
 }
 
     return (
@@ -52,7 +52,7 @@ export default function Body() {
                     aria-label="keywords"
                     name="keywords"
                 />
-                <button>+ Type keywords</button>
+                <button>+ Add keyword</button>
             </form>
 
             {/* will be using conditional rendering here */}
