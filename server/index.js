@@ -12,14 +12,16 @@ You are an assistant that receives a list of keywords that a user has and make a
 // Load API key from environment — never hard-code it here!
 const hf = new HfInference(process.env.HF_ACCESS_TOKEN)
 
-app.use(
-    cors({
-        origin: [
-            "http://localhost:5173",
-            "https://the-joker-ai.vercel.app"
-        ],
-    })
-)
+// app.use(
+//     cors({
+//         origin: [
+//             "http://localhost:5173",
+//             "https://the-joker-ai.vercel.app"
+//         ],
+//     })
+// )
+
+app.use(cors())
 
 app.use(express.json())
 
