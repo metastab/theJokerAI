@@ -39,6 +39,7 @@ export default function Body() {
         setJoke("")
         setIsLoading(true)   
         const jokeMarkdown = await getJokeFromMistral(keywords)
+        console.log(jokeMarkdown)
         setJoke(jokeMarkdown)
         setIsLoading(false)  
 }
